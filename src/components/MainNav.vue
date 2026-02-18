@@ -1,12 +1,9 @@
 <template>
-  <header class="w-full text-sm">Main Nav</header>
+  <header class="w-full pt-2 text-sm">Main Nav</header>
 </template>
 
 <script>
 export default {
   name: 'MainNav',
-  props: {},
-  methods: {},
-  data: {},
 }
 </script>
