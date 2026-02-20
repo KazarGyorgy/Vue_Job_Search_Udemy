@@ -1,6 +1,16 @@
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { createApp } from "vue";
 
-import "@/index.css";
 import App from "@/App.vue";
+import "@/index.css";
 
-createApp(App).mount("#app");
+const app = createApp(App);
+
+library.add(faSearch);
+
+app.component("font-awesome-icon", FontAwesomeIcon);
+
+app.mount("#app");
+

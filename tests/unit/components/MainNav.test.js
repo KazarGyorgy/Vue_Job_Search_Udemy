@@ -4,14 +4,25 @@ import { describe } from "vitest"
 import userEvent from "@testing-library/user-event"
 
 describe("MainNav component tests", () => {
+  const renderMainNav = () => {
+    render(MainNav, {
+      global: {
+        stubs: {
+          "font-awesome-icon": true,
+        },
+      },
+    })
+  }
+
+  
   it("displays company name", () => {
-    render(MainNav)
+    renderMainNav()
     const companyName = screen.getByText("Bobo Careers")
     expect(companyName).toBeInTheDocument()
   })
 
   it("Check menuItems are existing", () => {
-    render(MainNav)
+    renderMainNav()
     const menuItems = screen.getAllByRole("listitem")
     const navigationMenuItemTexts = menuItems.map(
       (menuItem) => menuItem.textContent,
@@ -28,7 +39,7 @@ describe("MainNav component tests", () => {
 
   describe("When the user logs in", () => {
     it("displays user prtofile picture", async () => {
-      render(MainNav)
+      renderMainNav()
       let profileImage = screen.queryByRole("img", {
         name: /profilepicture/i, //i for case insensitive
       })
