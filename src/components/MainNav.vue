@@ -1,5 +1,5 @@
 <template>
-  <header class="w-full pt-2 text-sm">
+  <header :class="['w-full', 'pt-2', 'text-sm', headerHeightClass]">
     <div class="fixed left-0 top-0 h-16 w-full bg-white">
       <div
         class="mx-2 flex h-full flex-nowrap border-b border-solid border-brand-gray-1 px-8"
@@ -31,7 +31,7 @@
           />
         </div>
       </div>
-      <sub-nav v-if="isLoggedIn"/>
+      <sub-nav v-if="isLoggedIn" />
     </div>
   </header>
 </template>
@@ -39,14 +39,19 @@
 <script>
 import ActionButton from "@/components/ui/ActionButton.vue"
 import ProfileImage from "@/components/ui/ProfileImage.vue"
-import SubNav from "./SubNav.vue";
+import SubNav from "./SubNav.vue"
 
 export default {
   name: "MainNav",
   components: {
     ActionButton,
     ProfileImage,
-    SubNav
+    SubNav,
+  },
+  computed: {
+    headerHeightClass() {
+      return this.isLoggedIn ? "h-32" : "h-16"
+    },
   },
   methods: {
     handleClick() {
