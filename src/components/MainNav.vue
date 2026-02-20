@@ -21,14 +21,30 @@
             </li>
           </ul>
         </nav>
+        <div class="ml-auto flex h-full items-center">
+          <ProfileImage v-if="isLoggedIn" v-on:click="handleClick" />
+          <ActionButton v-else @click="handleClick" />
+        </div>
       </div>
     </div>
   </header>
 </template>
 
 <script>
+import ActionButton from "@/components/ui/ActionButton.vue"
+import ProfileImage from "@/components/ui/ProfileImage.vue"
+
 export default {
   name: "MainNav",
+  components: {
+    ActionButton,
+    ProfileImage,
+  },
+  methods: {
+    handleClick() {
+      this.isLoggedIn = !this.isLoggedIn
+    },
+  },
   data() {
     return {
       company: "Bobo Careers",
@@ -41,6 +57,7 @@ export default {
         "Students",
         "Jobs",
       ],
+      isLoggedIn: false,
     }
   },
 }
