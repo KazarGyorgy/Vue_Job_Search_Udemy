@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/vue"
-import MainNav from "@/components/MainNav.vue"
+import MainNav from "@/components/Navigation/MainNav.vue"
 import { describe } from "vitest"
 import userEvent from "@testing-library/user-event"
 
@@ -14,7 +14,7 @@ describe("MainNav component tests", () => {
     })
   }
 
-  
+
   it("displays company name", () => {
     renderMainNav()
     const companyName = screen.getByText("Bobo Careers")

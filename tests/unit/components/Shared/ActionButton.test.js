@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/vue"
-import ActionButton from "@/components/ui/ActionButton.vue"
+import ActionButton from "@/components/Shared/ActionButton.vue"
 
 describe("Action button component", () => {
   it("Action button has a label", () => {

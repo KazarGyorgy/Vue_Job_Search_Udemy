@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="mb-16 ">
     <h1 class="mb-14 text-8xl font-bold tracking-tighter">
       <span :class="[actionClass]">
         {{ action }}
@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import nextElementInList from "../utils/nextElementInList"
+import nextElementInList from "../../utils/nextElementInList"
 
 export default {
   name: "HeadLine",

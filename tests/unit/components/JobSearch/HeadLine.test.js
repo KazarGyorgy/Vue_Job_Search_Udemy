@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/vue"
-import HeadLine from "@/components/HeadLine.vue"
+import HeadLine from "@/components/JobSearch/HeadLine.vue"
 import { describe, expect, vi } from "vitest"
 import { nextTick } from "vue"
 
