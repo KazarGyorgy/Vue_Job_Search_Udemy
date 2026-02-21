@@ -1,5 +1,5 @@
 <template>
-  <header class="w-full pt-2 text-sm">
+  <header :class="['w-full', 'pt-2', 'text-sm', headerHeightClass]">
     <div class="fixed left-0 top-0 h-16 w-full bg-white">
       <div
         class="mx-2 flex h-full flex-nowrap border-b border-solid border-brand-gray-1 px-8"
@@ -21,14 +21,43 @@
             </li>
           </ul>
         </nav>
+        <div class="ml-auto flex h-full items-center">
+          <ProfileImage v-if="isLoggedIn" v-on:click="handleClick" />
+          <ActionButton
+            v-else
+            @click="handleClick"
+            :label="'Sign in'"
+            type="primary"
+          />
+        </div>
       </div>
+      <sub-nav v-if="isLoggedIn" />
     </div>
   </header>
 </template>
 
 <script>
+import ActionButton from "@/components/Shared/ActionButton.vue"
+import ProfileImage from "@/components/Navigation/ProfileImage.vue"
+import SubNav from "@/components/Navigation/SubNav.vue"
+
 export default {
   name: "MainNav",
+  components: {
+    ActionButton,
+    ProfileImage,
+    SubNav,
+  },
+  computed: {
+    headerHeightClass() {
+      return this.isLoggedIn ? "h-32" : "h-16"
+    },
+  },
+  methods: {
+    handleClick() {
+      this.isLoggedIn = !this.isLoggedIn
+    },
+  },
   data() {
     return {
       company: "Bobo Careers",
@@ -41,6 +70,7 @@ export default {
         "Students",
         "Jobs",
       ],
+      isLoggedIn: false,
     }
   },
 }
