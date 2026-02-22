@@ -4,9 +4,12 @@
       <div
         class="mx-2 flex h-full flex-nowrap border-b border-solid border-brand-gray-1 px-8"
       >
-        <a class="flex h-full items-center text-xl" :href="url">
-          {{ company }}
-        </a>
+        <router-link
+          :to="{ name: 'Home' }"
+          class="flex h-full cursor-pointer items-center text-xl"
+        >
+          Bobo Careers
+        </router-link>
 
         <nav class="ml-12 h-full">
           <ul class="flex h-full list-none">
@@ -15,9 +18,12 @@
               :key="menuItem"
               class="ml-9 h-full first:ml-0"
             >
-              <a href="" class="flex h-full items-center py-2.5">
-                {{ menuItem }}
-              </a>
+              <router-link
+                :to="menuItem.url"
+                class="flex h-full items-center py-2.5"
+              >
+                {{ menuItem.text }}
+              </router-link>
             </li>
           </ul>
         </nav>
@@ -60,15 +66,13 @@ export default {
   },
   data() {
     return {
-      company: "Bobo Careers",
-      url: "https://careers.google.com",
       navItems: [
-        "Teams",
-        "Location",
-        "Life at Bobo Corp",
-        "How we hire",
-        "Students",
-        "Jobs",
+        { text: "Teams", url: "/teams" },
+        { text: "Location", url: "/location" },
+        { text: "Life at Bobo Corp", url: "/life-at-bobo-corp" },
+        { text: "How we hire", url: "/how-we-hire" },
+        { text: "Students", url: "/students" },
+        { text: "Jobs", url: "/jobs" },
       ],
       isLoggedIn: false,
     }
