@@ -1,7 +1,9 @@
 import HomeView from "@/components/Views/HomeView.vue";
 import JobResultsView from "@/components/Views/JobResultsView.vue";
 import JobView from "@/components/Views/JobView.vue";
+import TeamsView from "@/components/Views/TeamsView.vue";
 import { createRouter, createWebHashHistory } from "vue-router";
+import LocationView from "../components/Views/LocationView.vue";
 
 const routes = [
   {
@@ -18,7 +20,9 @@ const routes = [
     path: "/jobs/results/:id",
     name: "JobListing",
     component: JobView,
-  }
+  },
+  {path: "/teams", name: "Teams", component: TeamsView},
+  {path: "/location", name: "Location", component: LocationView}
 ];
 
 const router = createRouter({
