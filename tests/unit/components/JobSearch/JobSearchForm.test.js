@@ -27,9 +27,9 @@ describe("JobSearchForm", () => {
 
       const submitButton = screen.getByRole("button", { name: /search/i })
       await userEvent.click(submitButton)
-      
+
       expect(mockRouterPush).toHaveBeenCalledWith({
-        name: "JobResults",
+        name: "JobsResults",
         query: {
           role: "Software Engineer",
           location: "Szeged",

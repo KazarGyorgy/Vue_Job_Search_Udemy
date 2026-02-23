@@ -57,7 +57,7 @@ export default {
   methods: {
     searchForJobs() {
       this.$router.push({
-        name: "JobResults",
+        name: "JobsResults",
         query: { role: this.role, location: this.location },
       })
     },

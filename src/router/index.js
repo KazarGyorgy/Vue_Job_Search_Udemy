@@ -10,8 +10,8 @@ const routes = [
     component: HomeView,
   },
   {
-    path: "/jobs",
-    name: "JobResults",
+    path: "/jobs/results",
+    name: "JobsResults",
     component: JobResultsView,
   },
   {
@@ -24,6 +24,9 @@ const routes = [
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
+  scrollBehavior() {
+    return { top: 0, left: 0, behavior: "smooth" }
+  }
 });
 
 export default router;

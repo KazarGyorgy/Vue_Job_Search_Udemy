@@ -6,11 +6,14 @@ import { createApp } from "vue"
 import App from "@/App.vue"
 import "@/index.css"
 import router from "@/router/index.js"
+import { createPinia } from "pinia"
 
-const app = createApp(App)
+const pinia = createPinia()
 
 library.add(faSearch)
-app.use(router)
-app.component("font-awesome-icon", FontAwesomeIcon)
 
-app.mount("#app")
+createApp(App)
+  .use(pinia)
+  .use(router)
+  .component("font-awesome-icon", FontAwesomeIcon)
+  .mount("#app")

@@ -28,10 +28,10 @@
           </ul>
         </nav>
         <div class="ml-auto flex h-full items-center">
-          <ProfileImage v-if="isLoggedIn" v-on:click="handleClick" />
+          <ProfileImage v-if="isLoggedIn" />
           <ActionButton
             v-else
-            @click="handleClick"
+            @click="loginUser"
             :label="'Sign in'"
             type="primary"
           />
@@ -46,6 +46,8 @@
 import ActionButton from "@/components/Shared/ActionButton.vue"
 import ProfileImage from "@/components/Navigation/ProfileImage.vue"
 import SubNav from "@/components/Navigation/SubNav.vue"
+import { mapStores,mapActions, mapState } from "pinia"
+import { useUserStore } from "@/stores/user"
 
 export default {
   name: "MainNav",
@@ -55,15 +57,14 @@ export default {
     SubNav,
   },
   computed: {
+    //...mapStores(useUserStore), // Betölt mindent a sroreból
+    ...mapState(useUserStore, ["isLoggedIn"]), // Csak az isLoggedIn state-t tölti be, nem az egész objectet
+    ...mapActions(useUserStore, ["loginUser", "logoutUser"]),// Csak a login és logoutot tölti be nem az egés store-t, felesleges actionökekkel nem terheljük
     headerHeightClass() {
       return this.isLoggedIn ? "h-32" : "h-16"
     },
   },
-  methods: {
-    handleClick() {
-      this.isLoggedIn = !this.isLoggedIn
-    },
-  },
+  methods: {},
   data() {
     return {
       navItems: [
@@ -72,9 +73,8 @@ export default {
         { text: "Life at Bobo Corp", url: "/life-at-bobo-corp" },
         { text: "How we hire", url: "/how-we-hire" },
         { text: "Students", url: "/students" },
-        { text: "Jobs", url: "/jobs" },
+        { text: "Jobs", url: "/jobs/results" },
       ],
-      isLoggedIn: false,
     }
   },
 }
