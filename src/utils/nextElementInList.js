@@ -1,7 +1,8 @@
 const nextElementInList = (list, value) => {
-  const currentActionIndex = list.indexOf(value)
-  const nextActionIndex = (currentActionIndex + 1) % list.length
-  return list[nextActionIndex]
-}
+  const currentValueIndex = list.indexOf(value);
+  const nextValueIndex = (currentValueIndex + 1) % list.length;
+  const nextValue = list[nextValueIndex];
+  return nextValue;
+};
 
-export default nextElementInList
+export default nextElementInList;

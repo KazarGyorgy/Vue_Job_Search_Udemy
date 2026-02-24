@@ -1,6 +1,6 @@
 <template>
   <button :class="buttonClass">
-    {{ label }}
+    {{ text }}
   </button>
 </template>
 
@@ -8,19 +8,16 @@
 export default {
   name: "ActionButton",
   props: {
-    label: {
+    text: {
       type: String,
       required: true,
-      validator(value) {
-        return value.length > 0
-      },
     },
     type: {
       type: String,
       required: false,
-      default: "secondary",
+      default: "primary",
       validator(value) {
-        return ["primary", "secondary"].includes(value)
+        return ["primary", "secondary"].includes(value);
       },
     },
   },
@@ -28,10 +25,10 @@ export default {
     buttonClass() {
       return {
         [this.type]: true,
-      }
+      };
     },
   },
-}
+};
 </script>
 
 <style scoped>
@@ -42,7 +39,8 @@ button {
 .primary {
   @apply rounded bg-brand-blue-1 text-white hover:shadow-blue;
 }
+
 .secondary {
-  @apply bg-transparent text-brand-blue-2 hover:bg-brand-blue-1 hover:text-white;
+  @apply bg-transparent text-brand-blue-1 hover:bg-brand-blue-2 hover:text-white;
 }
 </style>
