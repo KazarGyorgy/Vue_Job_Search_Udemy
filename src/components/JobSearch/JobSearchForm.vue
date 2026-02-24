@@ -3,48 +3,38 @@
     class="flex h-12 w-full items-center rounded-3xl border border-solid border-brand-gray-3"
     @submit.prevent="searchForJobs"
   >
-    <font-awesome-icon
-      :icon="['fas', 'search']"
-      class="ml-4 mr-3 flex items-center"
-    />
+    <font-awesome-icon :icon="['fas', 'search']" class="ml-4 mr-3" />
+
     <div class="flex h-full flex-1 flex-nowrap text-base font-light">
       <div class="relative flex h-full flex-1 items-center pr-3">
-        <label for="role" class="absolute -top-10 left-0">
-          Role
-        </label>
-        <text-input
-          id="role"
-          placeholder="Software Engineer"
-          v-model="role"
-        />
+        <label for="role" class="absolute -top-10 left-0">Role</label>
+        <text-input id="role" v-model="role" placeholder="Software engineer" />
       </div>
+
       <span
-        class="border-1 flex h-full items-center border-l border-r border-brand-gray-3 bg-brand-gray-2 px-3"
+        class="flex h-full items-center border-l border-r border-brand-gray-3 bg-brand-gray-2 px-3"
       >
         in
       </span>
+
       <div class="relative flex h-full flex-1 items-center pl-3">
-        <label for="location" class="absolute -top-10 left-0">
-          Where?
-        </label>
+        <label for="location" class="absolute -top-10 left-0">Where?</label>
         <text-input
           id="location"
-          placeholder="Szeged"
           v-model="location"
+          placeholder="Los Angeles"
         />
       </div>
     </div>
-    <action-button
-      type="secondary"
-      label="Search"
-      class="rounded-r-3xl"
-    />
+
+    <action-button text="Search" type="secondary" class="rounded-r-3xl" />
   </form>
 </template>
 
 <script>
-import ActionButton from "@/components/Shared/ActionButton.vue"
-import TextInput from "@/components/Shared/TextInput.vue"
+import ActionButton from "@/components/Shared/ActionButton.vue";
+import TextInput from "@/components/Shared/TextInput.vue";
+
 export default {
   name: "JobSearchForm",
   components: { ActionButton, TextInput },
@@ -52,15 +42,15 @@ export default {
     return {
       role: "",
       location: "",
-    }
+    };
   },
   methods: {
     searchForJobs() {
       this.$router.push({
-        name: "JobsResults",
+        name: "JobResults",
         query: { role: this.role, location: this.location },
-      })
+      });
     },
   },
-}
+};
 </script>

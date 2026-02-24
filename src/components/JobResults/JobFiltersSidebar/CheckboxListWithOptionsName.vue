@@ -11,6 +11,7 @@
                   :id="element"
                   type="checkbox"
                   :value="element"
+                  @change="handleChange"
                 />
                 <label :for="element">{{ element }}</label>
               </li>
@@ -25,9 +26,17 @@ export default {
   name: "CheckboxListWithOptionsName",
   props: {
     elements: {
-      type: Array,
+      type: Set,
       required: true,
     },
   },
+  emits:["change-selection"],
+  methods:{
+    handleChange(event){
+      const eventName= event.target.value;
+      const eventChecked= event.target.checked;
+      this.$emit("change-selection", {eventName, eventChecked})
+    }
+  }
 }
 </script>

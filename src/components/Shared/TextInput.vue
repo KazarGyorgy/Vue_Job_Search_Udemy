@@ -10,17 +10,17 @@
 <script>
 export default {
   name: "TextInput",
- props: {
-  modelValue: {
-    type: String,
-    required: true,
-  },
- },
- emits: ["update:modelValue"],
-  methods: {
-    handleInput(event) {
-      this.$emit("update:modelValue", event.target.value);
+  props: {
+    modelValue: {
+      type: String,
+      required: true,
     },
   },
-}
+  emits: ["update:modelValue"],
+  methods: {
+    handleInput($event) {
+      this.$emit("update:modelValue", $event.target.value);
+    },
+  },
+};
 </script>

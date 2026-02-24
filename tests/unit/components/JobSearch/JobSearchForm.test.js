@@ -1,40 +1,44 @@
-import { render, screen } from "@testing-library/vue"
-import userEvent from "@testing-library/user-event"
-import JobSearchForm from "../../../../src/components/JobSearch/JobSearchForm.vue"
+import { render, screen } from "@testing-library/vue";
+import userEvent from "@testing-library/user-event";
+
+import JobSearchForm from "@/components/JobSearch/JobSearchForm.vue";
 
 describe("JobSearchForm", () => {
-  describe("when the user submits the form", () => {
+  describe("when user submits form", () => {
     it("directs user to job results page with user's search parameters", async () => {
-      const mockRouterPush = vi.fn();
-      const $router = {
-        push: mockRouterPush,
-      }
+      const push = vi.fn();
+      const $router = { push };
+
       render(JobSearchForm, {
         global: {
           mocks: {
             $router,
           },
           stubs: {
-            "font-awesome-icon": true,
+            FontAwesomeIcon: true,
           },
         },
-      })
-      const roleInput = screen.getByRole("textbox", { name: /role/i })
-      await userEvent.type(roleInput, "Software Engineer")
+      });
 
-      const locationInput = screen.getByRole("textbox", { name: /where/i })
-      await userEvent.type(locationInput, "Szeged")
+      const roleInput = screen.getByRole("textbox", {
+        name: /role/i,
+      });
+      await userEvent.type(roleInput, "Vue Developer");
 
-      const submitButton = screen.getByRole("button", { name: /search/i })
-      await userEvent.click(submitButton)
+      const locationInput = screen.getByRole("textbox", {
+        name: /where?/i,
+      });
+      await userEvent.type(locationInput, "Dallas");
 
-      expect(mockRouterPush).toHaveBeenCalledWith({
-        name: "JobsResults",
-        query: {
-          role: "Software Engineer",
-          location: "Szeged",
-        },
-      })
-    })
-  })
-})
+      const submitButton = screen.getByRole("button", {
+        name: /search/i,
+      });
+      await userEvent.click(submitButton);
+
+      expect(push).toHaveBeenCalledWith({
+        name: "JobResults",
+        query: { role: "Vue Developer", location: "Dallas" },
+      });
+    });
+  });
+});

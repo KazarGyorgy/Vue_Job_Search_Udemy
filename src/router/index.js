@@ -1,9 +1,9 @@
-import HomeView from "@/components/Views/HomeView.vue";
-import JobResultsView from "@/components/Views/JobResultsView.vue";
-import JobView from "@/components/Views/JobView.vue";
-import TeamsView from "@/components/Views/TeamsView.vue";
 import { createRouter, createWebHashHistory } from "vue-router";
-import LocationView from "../components/Views/LocationView.vue";
+
+import HomeView from "@/views/HomeView.vue";
+import JobResultsView from "@/views/JobResultsView.vue";
+import JobView from "@/views/JobView.vue";
+import TeamsView from "@/views/TeamsView.vue";
 
 const routes = [
   {
@@ -13,7 +13,7 @@ const routes = [
   },
   {
     path: "/jobs/results",
-    name: "JobsResults",
+    name: "JobResults",
     component: JobResultsView,
   },
   {
@@ -21,16 +21,19 @@ const routes = [
     name: "JobListing",
     component: JobView,
   },
-  {path: "/teams", name: "Teams", component: TeamsView},
-  {path: "/location", name: "Location", component: LocationView}
+  {
+    path: "/teams",
+    name: "Teams",
+    component: TeamsView,
+  },
 ];
 
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
   scrollBehavior() {
-    return { top: 0, left: 0, behavior: "smooth" }
-  }
+    return { top: 0, left: 0, behavior: "smooth" };
+  },
 });
 
 export default router;

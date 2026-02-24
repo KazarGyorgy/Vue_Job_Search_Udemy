@@ -1,8 +1,8 @@
 <template>
   <img
-    class="h-8 w-8 rounded-3xl object-contain"
     :src="imageLink"
-    alt="profilePicture"
+    class="h-8 w-8 rounded-3xl object-contain"
+    alt="User profile image"
   />
 </template>
 
@@ -12,8 +12,8 @@ export default {
   data() {
     return {
       imageLink:
-        "https://wallpapers.com/images/high/weird-profile-pictures-k7dzvlzmlq8q6eib.webp",
-    }
+        "https://www.pngitem.com/pimgs/m/487-4876417_link-head-png-toon-link-face-png-transparent.png",
+    };
   },
-}
+};
 </script>
