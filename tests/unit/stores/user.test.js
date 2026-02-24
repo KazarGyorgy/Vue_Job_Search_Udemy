@@ -21,6 +21,10 @@ describe("state", () => {
     const store = useUserStore();
     expect(store.selectedJobTypes).toEqual([]);
   });
+  it("stores degree types that the user would like to filter jobs by", () => {
+    const store = useUserStore();
+    expect(store.selectedDegreeTypes).toEqual([]);
+  });
 });
 
 describe("actions", () => {
@@ -49,6 +53,13 @@ describe("actions", () => {
       const store = useUserStore();
       store.ADD_SELECTED_JOB_TYPES(["Full-time", "Part-time"]);
       expect(store.selectedJobTypes).toEqual(["Full-time", "Part-time"]);
+    });
+  });
+  describe("ADD_SELECTED_DEGREE_TYPES", () => {
+    it("updates degree types the user has chosen to filter jobs by", () => {
+      const store = useUserStore();
+      store.ADD_SELECTED_DEGREE_TYPES(["Bsc", "Msc"]);
+      expect(store.selectedDegreeTypes).toEqual(["Bsc", "Msc"]);
     });
   });
 });
