@@ -1,12 +1,12 @@
 import axios from "axios";
-
+import type { Mock } from "vitest";
 import getJobs from "@/api/getJobs";
 
 vi.mock("axios");
 
 describe("getJobs", () => {
   beforeEach(() => {
-    axios.get.mockResolvedValue({
+    (axios.get as Mock).mockResolvedValue({
       data: [
         {
           id: 1,

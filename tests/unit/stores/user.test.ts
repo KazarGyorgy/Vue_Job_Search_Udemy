@@ -62,4 +62,17 @@ describe("actions", () => {
       expect(store.selectedDegreeTypes).toEqual(["Bsc", "Msc"]);
     });
   });
+
+  describe("CLEAR_ALL_FILTERS", () => {
+    it("removes all filters", () => {
+      const store = useUserStore();
+      store.ADD_SELECTED_ORGANIZATIONS(["Org1", "Org2"]);
+      store.ADD_SELECTED_JOB_TYPES(["Full-time", "Part-time"]);
+      store.ADD_SELECTED_DEGREE_TYPES(["Bsc", "Msc"]);
+      store.CLEAR_FILTERS();
+      expect(store.selectedOrganizations).toEqual([]);
+      expect(store.selectedJobTypes).toEqual([]);
+      expect(store.selectedDegreeTypes).toEqual([]);
+    });
+  });
 });

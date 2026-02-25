@@ -8,42 +8,57 @@
           What do you want to do?
         </h3>
         <div class="flex items-center text-sm">
-          <action-button text="Clear Filters" type="secondary"  @click="clearFilters"/>
+          <action-button
+            text="Clear Filters"
+            type="secondary"
+            @click="clearFilters"
+          />
         </div>
       </div>
 
-      <job-filters-sidebar-degree-types />
-
-      <job-filters-sidebar-job-types />
-
-      <job-filters-sidebar-organizations />
+      <job-filter-sidebar-checkbox-group
+        :header="'Job Types'"
+        :unique-values="uniqueJobTypes"
+        :action="addSelectedJobTypes"
+      />
+      <job-filter-sidebar-checkbox-group
+        :header="'Organizations'"
+        :unique-values="uniqueOrganizations"
+        :action="addSelectedOrganizations"
+      />
+      <job-filter-sidebar-checkbox-group
+        :header="'Degree Types'"
+        :unique-values="uniqueDegreeTypes"
+        :action="addSelectedDegreeTypes"
+      />
     </section>
   </div>
 </template>
 
-<script>
-import JobFiltersSidebarJobTypes from "@/components/JobResults/JobFiltersSidebar/JobFiltersSidebarJobTypes.vue"
-import JobFiltersSidebarOrganizations from "@/components/JobResults/JobFiltersSidebar/JobFiltersSidebarOrganizations.vue"
+<script lang="ts" setup>
 import ActionButton from "@/components/Shared/ActionButton.vue"
-import CollapsibleAccordion from "@/components/Shared/CollapsibleAccordion.vue"
-import { mapActions } from "pinia"
-import { CLEAR_FILTERS, useUserStore } from "../../../stores/user"
-import JobFiltersSidebarDegreeTypes from "./JobFiltersSidebarDegreeTypes.vue"
+import JobFilterSidebarCheckboxGroup from "./JobFilterSidebarCheckboxGroup.vue"
+import { useJobsStore } from "@/stores/jobs"
+import { useUserStore } from "@/stores/user"
+import { computed } from "vue"
 
-export default {
-  name: "JobFiltersSidebar",
-  components: {
-    ActionButton,
-    CollapsibleAccordion,
-    JobFiltersSidebarJobTypes,
-    JobFiltersSidebarOrganizations,
-    JobFiltersSidebarDegreeTypes,
-  },
-  methods: {
-    ...mapActions(useUserStore, [CLEAR_FILTERS]),
-    clearFilters() {
-      this.CLEAR_FILTERS()
-    },
-  },
+const jobsStore = useJobsStore()
+
+const uniqueJobTypes = computed(() => jobsStore.UNIQUE_JOB_TYPES)
+const uniqueOrganizations = computed(
+  () => jobsStore.UNIQUE_ORGANIZATIONS,
+)
+const uniqueDegreeTypes = computed(
+  () => jobsStore.UNIQUE_DEGREE_TYPES,
+)
+
+const userStore = useUserStore()
+
+const addSelectedJobTypes = userStore.ADD_SELECTED_JOB_TYPES
+const addSelectedOrganizations = userStore.ADD_SELECTED_ORGANIZATIONS
+const addSelectedDegreeTypes = userStore.ADD_SELECTED_DEGREE_TYPES
+
+const clearFilters = () => {
+  userStore.CLEAR_FILTERS()
 }
 </script>

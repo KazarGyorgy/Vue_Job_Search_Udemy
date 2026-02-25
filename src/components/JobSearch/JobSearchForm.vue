@@ -8,7 +8,11 @@
     <div class="flex h-full flex-1 flex-nowrap text-base font-light">
       <div class="relative flex h-full flex-1 items-center pr-3">
         <label for="role" class="absolute -top-10 left-0">Role</label>
-        <text-input id="role" v-model="role" placeholder="Software engineer" />
+        <text-input
+          id="role"
+          v-model="role"
+          placeholder="Software engineer"
+        />
       </div>
 
       <span
@@ -18,7 +22,9 @@
       </span>
 
       <div class="relative flex h-full flex-1 items-center pl-3">
-        <label for="location" class="absolute -top-10 left-0">Where?</label>
+        <label for="location" class="absolute -top-10 left-0"
+          >Where?</label
+        >
         <text-input
           id="location"
           v-model="location"
@@ -27,30 +33,30 @@
       </div>
     </div>
 
-    <action-button text="Search" type="secondary" class="rounded-r-3xl" />
+    <action-button
+      text="Search"
+      type="secondary"
+      class="rounded-r-3xl"
+    />
   </form>
 </template>
 
-<script>
-import ActionButton from "@/components/Shared/ActionButton.vue";
-import TextInput from "@/components/Shared/TextInput.vue";
+<script lang="ts" setup>
+import { ref } from "vue"
+import { useRouter } from "vue-router"
+import ActionButton from "@/components/Shared/ActionButton.vue"
+import TextInput from "@/components/Shared/TextInput.vue"
 
-export default {
-  name: "JobSearchForm",
-  components: { ActionButton, TextInput },
-  data() {
-    return {
-      role: "",
-      location: "",
-    };
-  },
-  methods: {
-    searchForJobs() {
-      this.$router.push({
-        name: "JobResults",
-        query: { role: this.role, location: this.location },
-      });
-    },
-  },
-};
+const role = ref("")
+const location = ref("")
+const router = useRouter();
+
+
+const searchForJobs = () => {
+  router.push({
+    name: "JobResults",
+    query: { role: role.value, location: location.value },
+  });
+
+}
 </script>

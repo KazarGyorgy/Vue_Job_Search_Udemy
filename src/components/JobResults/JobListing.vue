@@ -4,7 +4,9 @@
       :to="jobPageLink"
       class="mx-auto block rounded border border-solid border-brand-gray-2 bg-white hover:shadow-gray"
     >
-      <div class="mx-8 border-b border-solid border-brand-gray-2 pb-2 pt-5">
+      <div
+        class="mx-8 border-b border-solid border-brand-gray-2 pb-2 pt-5"
+      >
         <h2 class="mb-2 text-2xl">
           {{ job.title }}
         </h2>
@@ -53,19 +55,18 @@
   </li>
 </template>
 
-<script>
-export default {
-  name: "JobListing",
-  props: {
-    job: {
-      type: Object,
-      required: true,
-    },
+<script lang="ts" setup>
+import { computed, type PropType } from "vue"
+import type { Job } from "@/api/types"
+
+const props = defineProps({
+  job: {
+    type: Object as PropType<Job>,
+    required: true,
   },
-  computed: {
-    jobPageLink() {
-      return `/jobs/results/${this.job.id}`;
-    },
-  },
-};
+})
+
+const jobPageLink = computed(() => {
+  return `/jobs/results/${props.job.id}`
+})
 </script>
